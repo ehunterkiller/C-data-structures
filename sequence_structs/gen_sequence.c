@@ -9,7 +9,7 @@ struct _gen_sequence {
 
 
 gen_sequence gen_sequence_create(int max_capacity){
-    gen_sequence gs = (gen_sequence) malloc(sizeof(gen_sequence));
+    gen_sequence gs = (gen_sequence) malloc(sizeof(struct _gen_sequence));
     if(gs == NULL){
         return NULL;
     }
@@ -60,14 +60,26 @@ int gen_sequence_is_full(gen_sequence gs){
 //==============================================================
 
 void* gen_sequence_get_elem_first(gen_sequence gs){
+    if(gs->num_elements == 0){
+        return NULL;
+    }
+
     return gs->elements[0];
 }
 
 void* gen_sequence_get_elem_last(gen_sequence gs){
+    if(gs->num_elements == 0){
+        return NULL;
+    }
+
     return gs->elements[gs->num_elements-1];
 }
 
 void* gen_sequence_get_elem_at(gen_sequence gs, int index){
+    if(index < 0 || index >= gs->num_elements){
+        return 0;
+    }
+
     return gs->elements[index];
 }
 
@@ -78,11 +90,12 @@ void gen_sequence_add_elem_first(gen_sequence gs, void* new_element){
         return;
     }
 
-    for(int i = gs->num_elements; i >= 0; i--){
-        gs->elements[i] = gs->elements[i+1];
+    for(int i = gs->num_elements-1; i >= 0; i--){
+        gs->elements[i+1] = gs->elements[i];
     }
 
     gs->elements[0] = new_element;
+    gs->num_elements++;
 }
 
 void gen_sequence_add_elem_last(gen_sequence gs, void* new_element){
@@ -91,6 +104,7 @@ void gen_sequence_add_elem_last(gen_sequence gs, void* new_element){
     }
 
     gs->elements[gs->num_elements] = new_element;
+    gs->num_elements++;
 }
 
 void gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
@@ -102,11 +116,12 @@ void gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
         return;
     }
 
-    for(int i = gs->num_elements; i >= index; i--){
-        gs->elements[i] = gs->elements[i+1];
+    for(int i = gs->num_elements-1; i >= index; i--){
+        gs->elements[i+1] = gs->elements[i];
     }
 
     gs->elements[index] = new_element;
+    gs->num_elements++;
 }
 
 //==============================================================
