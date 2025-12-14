@@ -39,6 +39,8 @@ void gen_sequence_delete_all(gen_sequence gs, void (*delete_func)(void*)){
     free(gs);
 }
 
+//==============================================================
+
 int gen_sequence_max_cap(gen_sequence gs){
     return gs->max_capacity;
 }
@@ -50,6 +52,12 @@ int gen_sequence_num_elems(gen_sequence gs){
 int gen_sequence_is_empty(gen_sequence gs){
     return gs->num_elements == 0;
 }
+
+int gen_sequence_is_full(gen_sequence gs){
+    return gs->num_elements == gs->max_capacity;
+}
+
+//==============================================================
 
 void* gen_sequence_get_elem_first(gen_sequence gs){
     return gs->elements[0];
@@ -63,12 +71,14 @@ void* gen_sequence_get_elem_at(gen_sequence gs, int index){
     return gs->elements[index];
 }
 
+//==============================================================
+
 void gen_sequence_add_elem_first(gen_sequence gs, void* new_element){
     if(gs->num_elements == gs->max_capacity){
         return;
     }
 
-    for(int i = gs->num_elements; i > 0; i--){
+    for(int i = gs->num_elements; i >= 0; i--){
         gs->elements[i] = gs->elements[i+1];
     }
 
@@ -88,7 +98,7 @@ void gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
         return;
     }
 
-    if(index < 0 || index > gs->max_capacity-1){
+    if(index < 0 || index >= gs->max_capacity){
         return;
     }
 
@@ -98,6 +108,8 @@ void gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
 
     gs->elements[index] = new_element;
 }
+
+//==============================================================
 
 void gen_sequence_rem_elem_first(gen_sequence gs){
     if(gs->num_elements == 0){
