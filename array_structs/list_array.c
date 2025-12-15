@@ -104,7 +104,7 @@ void* list_array_get_elem_at(list_array la, int index){
 
 //============================== Add Element Function ================================
 
-int list_array_add_elem_last(list_array la, void* new_element){
+int list_array_add_elem(list_array la, void* new_element){
     if(la->num_elements == la->max_capacity){
         return 0;
     }

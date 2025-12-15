@@ -121,7 +121,7 @@ Adds the given element at the last position of the list array
     Returns:
         > success of the operation
 */
-int line_array_add_elem_last(line_array la, void* new_element);
+int line_array_add_elem(line_array la, void* new_element);
 
 //============================== Remove Element Function ================================
 /*
@@ -131,6 +131,6 @@ Removes the element at the first position of the list array
     Returns:
         > nothing
 */
-int line_array_rem_elem_first(line_array la);
+int line_array_rem_elem(line_array la);
 
 #endif

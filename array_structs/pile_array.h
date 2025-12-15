@@ -121,7 +121,7 @@ Adds the given element at the first position of the pile array
     Returns:
         > success of the operation
 */
-int pile_array_add_elem_first(pile_array pa, void* new_element);
+int pile_array_add_elem(pile_array pa, void* new_element);
 
 //============================== Remove Element Function ================================
 /*
@@ -131,6 +131,6 @@ Removes the element at the first position of the pile array
     Returns:
         > nothing
 */
-int pile_array_rem_elem_first(pile_array pa);
+int pile_array_rem_elem(pile_array pa);
 
 #endif

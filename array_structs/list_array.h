@@ -121,7 +121,7 @@ Adds the given element at the last position of the list array
     Returns:
         > success of the operation
 */
-int list_array_add_elem_last(list_array la, void* new_element);
+int list_array_add_elem(list_array la, void* new_element);
 
 //============================== Remove Element Functions ================================
 /*

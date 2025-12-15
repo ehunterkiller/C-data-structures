@@ -103,7 +103,7 @@ void* line_array_get_elem_at(line_array la, int index){
 
 //============================== Add Element Function ================================
 
-int line_array_add_elem_last(line_array la, void* new_element){
+int line_array_add_elem(line_array la, void* new_element){
     if(la->num_elements == la->max_capacity){
         return 0;
     }
@@ -115,7 +115,7 @@ int line_array_add_elem_last(line_array la, void* new_element){
 
 //============================== Remove Element Function ================================
 
-int line_array_rem_elem_first(line_array la){
+int line_array_rem_elem(line_array la){
     if(la->num_elements == 0){
         return 0;
     }

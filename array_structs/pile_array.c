@@ -104,29 +104,21 @@ void* pile_array_get_elem_at(pile_array pa, int index){
 
 //============================== Add Element Function ================================
 
-int pile_array_add_elem_first(pile_array pa, void* new_element){
+int pile_array_add_elem(pile_array pa, void* new_element){
     if(pa->num_elements == pa->max_capacity){
         return 0;
     }
 
-    for(int i = pa->num_elements-1; i >= 0; i--){
-        pa->elements[i+1] = pa->elements[i];
-    }
-
-    pa->elements[0] = new_element;
+    pa->elements[pa->num_elements] = new_element;
     pa->num_elements++;
     return 1;
 }
 
 //============================== Remove Element Function ================================
 
-int pile_array_rem_elem_first(pile_array pa){
+int pile_array_rem_elem(pile_array pa){
     if(pa->num_elements == 0){
         return 0;
-    }
-
-    for(int i = 0; i < pa->num_elements-1; i++){
-        pa->elements[i] = pa->elements[i+1];
     }
 
     pa->num_elements--;
