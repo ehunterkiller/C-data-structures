@@ -9,8 +9,8 @@ int main(){
     //create a generic array
     printf("creating generic array data structure\n");
 
-    pile_array ps = pile_array_create(5);
-    if(ps == NULL){
+    pile_array pa = pile_array_create(5);
+    if(pa == NULL){
         printf("something went wrong when creating generic array, returned NULL\n");
         return 1;
     }
@@ -19,7 +19,7 @@ int main(){
     }
 
     //test if empty
-    if(pile_array_is_empty(ps)){
+    if(pile_array_is_empty(pa)){
         printf("generic array is empty\n");
     }
     else{
@@ -35,62 +35,62 @@ int main(){
     
     //last
     printf("added elements at last\n");
-    pile_array_add_elem_first(ps,t1);
-    pile_array_add_elem_first(ps,t2);
-    pile_array_add_elem_first(ps,t3);
+    pile_array_add_elem_first(pa,t1);
+    pile_array_add_elem_first(pa,t2);
+    pile_array_add_elem_first(pa,t3);
 
     printf("elements added\n");
 
     //test some parameters
-    if(pile_array_is_full(ps)){
+    if(pile_array_is_full(pa)){
         printf("generic array is FULL\n");
     }
     else{
         printf("generic array has space\n");
     }
 
-    int max_cap = pile_array_max_cap(ps);
+    int max_cap = pile_array_max_cap(pa);
     printf("generic array maximum capacity is %d\n",max_cap);
 
-    int num_elems = pile_array_num_elems(ps);
+    int num_elems = pile_array_num_elems(pa);
     printf("number of elements stored in generic is %d\n",num_elems);
 
-    test_adt t = (test_adt) pile_array_get_elem_first(ps);
+    test_adt t = (test_adt) pile_array_get_elem_first(pa);
     int data = test_adt_get_data(t);
     printf("first element is %d\n",data);
 
     //remove element
     printf("removing first element\n");
-    pile_array_rem_elem_first(ps);
+    pile_array_rem_elem_first(pa);
 
-    num_elems = pile_array_num_elems(ps);
+    num_elems = pile_array_num_elems(pa);
     printf("number of elements stored in generic is %d\n",num_elems);
 
-    t = (test_adt) pile_array_get_elem_first(ps);
+    t = (test_adt) pile_array_get_elem_first(pa);
     data = test_adt_get_data(t);
     printf("first element is %d\n",data);
 
     //resize
     printf("adding more capacity to the generic array\n");
-    pile_array new_ps = pile_array_add_cap(ps,3);
-    if(new_ps == NULL){
+    pile_array new_pa = pile_array_add_cap(pa,3);
+    if(new_pa == NULL){
         printf("something went wrong when resizing the generic array\n");
     }
     else{
         printf("generic array resized\n");
-        ps = new_ps;
+        pa = new_pa;
 
-        max_cap = pile_array_max_cap(ps);
+        max_cap = pile_array_max_cap(pa);
         printf("generic array maximum capacity is %d\n",max_cap);
 
-        t = (test_adt) pile_array_get_elem_first(ps);
+        t = (test_adt) pile_array_get_elem_first(pa);
         data = test_adt_get_data(t);
         printf("first element is %d\n",data);
     }
 
     //delete
     printf("deleting generic array and all elements\n");
-    pile_array_delete_all(ps,test_adt_delete_gen);
+    pile_array_delete_all(pa,test_adt_delete_gen);
 
     //test complete
     printf("test completed\nprogram ended\n");

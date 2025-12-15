@@ -24,7 +24,7 @@ Deletes the list array
     Returns:
         > nothing
 */
-void line_array_delete(line_array ls);
+void line_array_delete(line_array la);
 
 /*
 Deletes the list array and the elements stored in it
@@ -34,7 +34,7 @@ Deletes the list array and the elements stored in it
     Returns:
         > nothing
 */
-void line_array_delete_all(line_array ls, void (*delete_func)(void*));
+void line_array_delete_all(line_array la, void (*delete_func)(void*));
 
 //============================== State Functions ================================
 /*
@@ -44,7 +44,7 @@ Obtains the maxium capacity of the list array
     Returns:
         > maximum capacity
 */
-int line_array_max_cap(line_array ls);
+int line_array_max_cap(line_array la);
 
 /*
 Obtains the number of elements populationg the list array
@@ -53,7 +53,7 @@ Obtains the number of elements populationg the list array
     Returns:
         > maximum capacity
 */
-int line_array_num_elems(line_array ls);
+int line_array_num_elems(line_array la);
 
 /*
 Returns true if the list array is has zero elements
@@ -62,7 +62,7 @@ Returns true if the list array is has zero elements
     Returns:
         > true or false (int)
 */
-int line_array_is_empty(line_array ls);
+int line_array_is_empty(line_array la);
 
 /*
 Returns true if the list array is at full capacity
@@ -71,7 +71,7 @@ Returns true if the list array is at full capacity
     Returns:
         > true or false (int)
 */
-int line_array_is_full(line_array ls);
+int line_array_is_full(line_array la);
 
 /*
 Returns a new list array with added maximum capacity
@@ -81,9 +81,9 @@ Returns a new list array with added maximum capacity
     Returns:
         > new list array pointer
 */
-line_array line_array_add_cap(line_array ls, int more_capacity);
+line_array line_array_add_cap(line_array la, int more_capacity);
 
-//============================== Obtain Element Funtion ================================
+//============================== Obtain Element Funtions ================================
 /*
 Returns the element stored in first position of the list array
     Parameters:
@@ -91,7 +91,26 @@ Returns the element stored in first position of the list array
     Returns:
         > element stored
 */
-void* line_array_get_elem_first(line_array ls);
+void* line_array_get_elem_first(line_array la);
+
+/*
+Returns the element stored in last position of the list array
+    Parameters:
+        > list array pointer
+    Returns:
+        > element stored
+*/
+void* line_array_get_elem_last(line_array la);
+
+/*
+Returns the element stored in given position of the list array
+    Parameters:
+        > list array pointer
+        > index of the element
+    Returns:
+        > element stored
+*/
+void* line_array_get_elem_at(line_array la, int index);
 
 //============================== Add Element Function ================================
 /*
@@ -102,7 +121,7 @@ Adds the given element at the last position of the list array
     Returns:
         > success of the operation
 */
-int line_array_add_elem_last(line_array ls, void* new_element);
+int line_array_add_elem_last(line_array la, void* new_element);
 
 //============================== Remove Element Function ================================
 /*
@@ -112,6 +131,6 @@ Removes the element at the first position of the list array
     Returns:
         > nothing
 */
-int line_array_rem_elem_first(line_array ls);
+int line_array_rem_elem_first(line_array la);
 
 #endif

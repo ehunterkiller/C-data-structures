@@ -9,8 +9,8 @@ int main(){
     //create a generic array
     printf("creating generic array data structure\n");
 
-    gen_array gs = gen_array_create(5);
-    if(gs == NULL){
+    gen_array ga = gen_array_create(5);
+    if(ga == NULL){
         printf("something went wrong when creating generic array, returned NULL\n");
         return 1;
     }
@@ -19,7 +19,7 @@ int main(){
     }
 
     //test if empty
-    if(gen_array_is_empty(gs)){
+    if(gen_array_is_empty(ga)){
         printf("generic array is empty\n");
     }
     else{
@@ -35,36 +35,36 @@ int main(){
 
     //first
     printf("added element at first\n");
-    gen_array_add_elem_first(gs,t1);
+    gen_array_add_elem_first(ga,t1);
     
     //last
     printf("added element at last\n");
-    gen_array_add_elem_last(gs,t3);
+    gen_array_add_elem_last(ga,t3);
 
     //midle
     printf("added element at index 1\n");
-    gen_array_add_elem_at(gs,1,t2);
+    gen_array_add_elem_at(ga,1,t2);
 
     printf("elements added\n");
 
     //test some parameters
-    if(gen_array_is_full(gs)){
+    if(gen_array_is_full(ga)){
         printf("generic array is FULL\n");
     }
     else{
         printf("generic array has space\n");
     }
 
-    int max_cap = gen_array_max_cap(gs);
+    int max_cap = gen_array_max_cap(ga);
     printf("generic array maximum capacity is %d\n",max_cap);
 
-    int num_elems = gen_array_num_elems(gs);
+    int num_elems = gen_array_num_elems(ga);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     //iterate
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
+        test_adt t = (test_adt) gen_array_get_elem_at(ga,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -72,14 +72,14 @@ int main(){
 
     //remove element
     printf("removing element at index 1\n");
-    gen_array_rem_elem_at(gs,1);
+    gen_array_rem_elem_at(ga,1);
 
-    num_elems = gen_array_num_elems(gs);
+    num_elems = gen_array_num_elems(ga);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
+        test_adt t = (test_adt) gen_array_get_elem_at(ga,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -87,20 +87,20 @@ int main(){
 
     //resize
     printf("adding more capacity to the generic array\n");
-    gen_array new_gs = gen_array_add_cap(gs,3);
-    if(new_gs == NULL){
+    gen_array new_ga = gen_array_add_cap(ga,3);
+    if(new_ga == NULL){
         printf("something went wrong when resizing the generic array\n");
     }
     else{
         printf("generic array resized\n");
-        gs = new_gs;
+        ga = new_ga;
 
-        max_cap = gen_array_max_cap(gs);
+        max_cap = gen_array_max_cap(ga);
         printf("generic array maximum capacity is %d\n",max_cap);
 
         printf("iteration begin:\n");
         for(int i = 0; i < num_elems; i++){
-            test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
+            test_adt t = (test_adt) gen_array_get_elem_at(ga,i);
             int data = test_adt_get_data(t);
             printf("element at %d is %d\n",i,data);
         }
@@ -109,7 +109,7 @@ int main(){
 
     //delete
     printf("deleting generic array and all elements\n");
-    gen_array_delete_all(gs,test_adt_delete_gen);
+    gen_array_delete_all(ga,test_adt_delete_gen);
 
     //test complete
     printf("test completed\nprogram ended\n");

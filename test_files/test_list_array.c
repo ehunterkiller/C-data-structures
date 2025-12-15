@@ -9,8 +9,8 @@ int main(){
     //create a generic array
     printf("creating generic array data structure\n");
 
-    list_array ls = list_array_create(5);
-    if(ls == NULL){
+    list_array la = list_array_create(5);
+    if(la == NULL){
         printf("something went wrong when creating generic array, returned NULL\n");
         return 1;
     }
@@ -19,7 +19,7 @@ int main(){
     }
 
     //test if empty
-    if(list_array_is_empty(ls)){
+    if(list_array_is_empty(la)){
         printf("generic array is empty\n");
     }
     else{
@@ -35,30 +35,30 @@ int main(){
     
     //last
     printf("added elements at last\n");
-    list_array_add_elem_last(ls,t1);
-    list_array_add_elem_last(ls,t2);
-    list_array_add_elem_last(ls,t3);
+    list_array_add_elem_last(la,t1);
+    list_array_add_elem_last(la,t2);
+    list_array_add_elem_last(la,t3);
 
     printf("elements added\n");
 
     //test some parameters
-    if(list_array_is_full(ls)){
+    if(list_array_is_full(la)){
         printf("generic array is FULL\n");
     }
     else{
         printf("generic array has space\n");
     }
 
-    int max_cap = list_array_max_cap(ls);
+    int max_cap = list_array_max_cap(la);
     printf("generic array maximum capacity is %d\n",max_cap);
 
-    int num_elems = list_array_num_elems(ls);
+    int num_elems = list_array_num_elems(la);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     //iterate
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) list_array_get_elem_at(ls,i);
+        test_adt t = (test_adt) list_array_get_elem_at(la,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -66,14 +66,14 @@ int main(){
 
     //remove element
     printf("removing element at index 1\n");
-    list_array_rem_elem_at(ls,1);
+    list_array_rem_elem_at(la,1);
 
-    num_elems = list_array_num_elems(ls);
+    num_elems = list_array_num_elems(la);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) list_array_get_elem_at(ls,i);
+        test_adt t = (test_adt) list_array_get_elem_at(la,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -81,20 +81,20 @@ int main(){
 
     //resize
     printf("adding more capacity to the generic array\n");
-    list_array new_ls = list_array_add_cap(ls,3);
-    if(new_ls == NULL){
+    list_array new_la = list_array_add_cap(la,3);
+    if(new_la == NULL){
         printf("something went wrong when resizing the generic array\n");
     }
     else{
         printf("generic array resized\n");
-        ls = new_ls;
+        la = new_la;
 
-        max_cap = list_array_max_cap(ls);
+        max_cap = list_array_max_cap(la);
         printf("generic array maximum capacity is %d\n",max_cap);
 
         printf("iteration begin:\n");
         for(int i = 0; i < num_elems; i++){
-            test_adt t = (test_adt) list_array_get_elem_at(ls,i);
+            test_adt t = (test_adt) list_array_get_elem_at(la,i);
             int data = test_adt_get_data(t);
             printf("element at %d is %d\n",i,data);
         }
@@ -103,7 +103,7 @@ int main(){
 
     //delete
     printf("deleting generic array and all elements\n");
-    list_array_delete_all(ls,test_adt_delete_gen);
+    list_array_delete_all(la,test_adt_delete_gen);
 
     //test complete
     printf("test completed\nprogram ended\n");

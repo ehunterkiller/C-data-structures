@@ -24,7 +24,7 @@ Deletes the generic array
     Returns:
         > nothing
 */
-void gen_array_delete(gen_array gs);
+void gen_array_delete(gen_array ga);
 
 /*
 Deletes the generic array and the elements stored in it
@@ -34,7 +34,7 @@ Deletes the generic array and the elements stored in it
     Returns:
         > nothing
 */
-void gen_array_delete_all(gen_array gs, void (*delete_func)(void*));
+void gen_array_delete_all(gen_array ga, void (*delete_func)(void*));
 
 //============================== State Functions ================================
 /*
@@ -44,7 +44,7 @@ Obtains the maxium capacity of the generic array
     Returns:
         > maximum capacity
 */
-int gen_array_max_cap(gen_array gs);
+int gen_array_max_cap(gen_array ga);
 
 /*
 Obtains the number of elements populationg the generic array
@@ -53,7 +53,7 @@ Obtains the number of elements populationg the generic array
     Returns:
         > maximum capacity
 */
-int gen_array_num_elems(gen_array gs);
+int gen_array_num_elems(gen_array ga);
 
 /*
 Returns true if the generic array is has zero elements
@@ -62,7 +62,7 @@ Returns true if the generic array is has zero elements
     Returns:
         > true or false (int)
 */
-int gen_array_is_empty(gen_array gs);
+int gen_array_is_empty(gen_array ga);
 
 /*
 Returns true if the generic array is at full capacity
@@ -71,7 +71,7 @@ Returns true if the generic array is at full capacity
     Returns:
         > true or false (int)
 */
-int gen_array_is_full(gen_array gs);
+int gen_array_is_full(gen_array ga);
 
 /*
 Returns a new generic array with added maximum capacity
@@ -81,7 +81,7 @@ Returns a new generic array with added maximum capacity
     Returns:
         > new generic array pointer
 */
-gen_array gen_array_add_cap(gen_array gs, int more_capacity);
+gen_array gen_array_add_cap(gen_array ga, int more_capacity);
 
 //============================== Obtain Element Funtions ================================
 /*
@@ -91,7 +91,7 @@ Returns the element stored in first position of the generic array
     Returns:
         > element stored
 */
-void* gen_array_get_elem_first(gen_array gs);
+void* gen_array_get_elem_first(gen_array ga);
 
 /*
 Returns the element stored in last position of the generic array
@@ -100,7 +100,7 @@ Returns the element stored in last position of the generic array
     Returns:
         > element stored
 */
-void* gen_array_get_elem_last(gen_array gs);
+void* gen_array_get_elem_last(gen_array ga);
 
 /*
 Returns the element stored in given position of the generic array
@@ -110,7 +110,7 @@ Returns the element stored in given position of the generic array
     Returns:
         > element stored
 */
-void* gen_array_get_elem_at(gen_array gs, int index);
+void* gen_array_get_elem_at(gen_array ga, int index);
 
 //============================== Add Element Functions ================================
 /*
@@ -121,7 +121,7 @@ Adds the given element at the first position of the generic array
     Returns:
         > success of the operation
 */
-int gen_array_add_elem_first(gen_array gs, void* new_element);
+int gen_array_add_elem_first(gen_array ga, void* new_element);
 
 /*
 Adds the given element at the last position of the generic array
@@ -131,7 +131,7 @@ Adds the given element at the last position of the generic array
     Returns:
         > success of the operation
 */
-int gen_array_add_elem_last(gen_array gs, void* new_element);
+int gen_array_add_elem_last(gen_array ga, void* new_element);
 
 /*
 Adds the given element at the given position of the generic array
@@ -141,7 +141,7 @@ Adds the given element at the given position of the generic array
     Returns:
         > success of the operation
 */
-int gen_array_add_elem_at(gen_array gs, int index, void* new_element);
+int gen_array_add_elem_at(gen_array ga, int index, void* new_element);
 
 //============================== Remove Element Functions ================================
 /*
@@ -151,7 +151,7 @@ Removes the element at the first position of the generic array
     Returns:
         > nothing
 */
-int gen_array_rem_elem_first(gen_array gs);
+int gen_array_rem_elem_first(gen_array ga);
 
 /*
 Removes the element at the last position of the generic array
@@ -160,7 +160,7 @@ Removes the element at the last position of the generic array
     Returns:
         > nothing
 */
-int gen_array_rem_elem_last(gen_array gs);
+int gen_array_rem_elem_last(gen_array ga);
 
 /*
 Removes the element at the given position of the generic array
@@ -170,6 +170,6 @@ Removes the element at the given position of the generic array
     Returns:
         > nothing
 */
-int gen_array_rem_elem_at(gen_array gs, int index);
+int gen_array_rem_elem_at(gen_array ga, int index);
 
 #endif //GEN_array_H
