@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../sequence_structs/gen_sequence.h"
+#include "../sequence_structs/list_sequence.h"
 #include "test_data_type/testADT.h"
 
 int main(){
@@ -9,8 +9,8 @@ int main(){
     //create a generic sequence
     printf("creating generic sequence data structure\n");
 
-    gen_sequence gs = gen_sequence_create(5);
-    if(gs == NULL){
+    list_sequence ls = list_sequence_create(5);
+    if(ls == NULL){
         printf("something went wrong when creating generic sequence, returned NULL\n");
         return 1;
     }
@@ -19,7 +19,7 @@ int main(){
     }
 
     //test if empty
-    if(gen_sequence_is_empty(gs)){
+    if(list_sequence_is_empty(ls)){
         printf("generic sequence is empty\n");
     }
     else{
@@ -32,39 +32,33 @@ int main(){
     test_adt t1 = test_adt_create(1);
     test_adt t2 = test_adt_create(2);
     test_adt t3 = test_adt_create(3);
-
-    //first
-    printf("added element at first\n");
-    gen_sequence_add_elem_first(gs,t1);
     
     //last
-    printf("added element at last\n");
-    gen_sequence_add_elem_last(gs,t3);
-
-    //midle
-    printf("added element at index 1\n");
-    gen_sequence_add_elem_at(gs,1,t2);
+    printf("added elements at last\n");
+    list_sequence_add_elem_last(ls,t1);
+    list_sequence_add_elem_last(ls,t2);
+    list_sequence_add_elem_last(ls,t3);
 
     printf("elements added\n");
 
     //test some parameters
-    if(gen_sequence_is_full(gs)){
+    if(list_sequence_is_full(ls)){
         printf("generic sequence is FULL\n");
     }
     else{
         printf("generic sequence has space\n");
     }
 
-    int max_cap = gen_sequence_max_cap(gs);
+    int max_cap = list_sequence_max_cap(ls);
     printf("generic sequence maximum capacity is %d\n",max_cap);
 
-    int num_elems = gen_sequence_num_elems(gs);
+    int num_elems = list_sequence_num_elems(ls);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     //iterate
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+        test_adt t = (test_adt) list_sequence_get_elem_at(ls,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -72,14 +66,14 @@ int main(){
 
     //remove element
     printf("removing element at index 1\n");
-    gen_sequence_rem_elem_at(gs,1);
+    list_sequence_rem_elem_at(ls,1);
 
-    num_elems = gen_sequence_num_elems(gs);
+    num_elems = list_sequence_num_elems(ls);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+        test_adt t = (test_adt) list_sequence_get_elem_at(ls,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -87,20 +81,20 @@ int main(){
 
     //resize
     printf("adding more capacity to the generic sequence\n");
-    gen_sequence new_gs = gen_sequence_add_cap(gs,3);
-    if(new_gs == NULL){
+    list_sequence new_ls = list_sequence_add_cap(ls,3);
+    if(new_ls == NULL){
         printf("something went wrong when resizing the generic sequence\n");
     }
     else{
         printf("generic sequence resized\n");
-        gs = new_gs;
+        ls = new_ls;
 
-        max_cap = gen_sequence_max_cap(gs);
+        max_cap = list_sequence_max_cap(ls);
         printf("generic sequence maximum capacity is %d\n",max_cap);
 
         printf("iteration begin:\n");
         for(int i = 0; i < num_elems; i++){
-            test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+            test_adt t = (test_adt) list_sequence_get_elem_at(ls,i);
             int data = test_adt_get_data(t);
             printf("element at %d is %d\n",i,data);
         }
@@ -109,7 +103,7 @@ int main(){
 
     //delete
     printf("deleting generic sequence and all elements\n");
-    gen_sequence_delete_all(gs,test_adt_delete_gen);
+    list_sequence_delete_all(ls,test_adt_delete_gen);
 
     //test complete
     printf("test completed\nprogram ended\n");

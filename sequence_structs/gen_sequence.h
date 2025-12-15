@@ -2,8 +2,12 @@
 #define GEN_SEQUENCE_H
 
 //data type structure definition - generic sequence
+/*
+Stores elements in a array and allows all types of data manipualtion
+*/
 typedef struct _gen_sequence * gen_sequence;
 
+//============================== Creation and Deletion Functions ================================
 /*
 Creates the generic sequence
     Parameters:
@@ -32,6 +36,7 @@ Deletes the generic sequence and the elements stored in it
 */
 void gen_sequence_delete_all(gen_sequence gs, void (*delete_func)(void*));
 
+//============================== State Functions ================================
 /*
 Obtains the maxium capacity of the generic sequence
     Parameters:
@@ -69,6 +74,17 @@ Returns true if the generic sequence is at full capacity
 int gen_sequence_is_full(gen_sequence gs);
 
 /*
+Returns a new generic sequence with added maximum capacity
+    Parameters:
+        > generic sequence pointer
+        > number of new slots
+    Returns:
+        > new generic sequence pointer
+*/
+gen_sequence gen_sequence_add_cap(gen_sequence gs, int more_capacity);
+
+//============================== Obtain Element Funtions ================================
+/*
 Returns the element stored in first position of the generic sequence
     Parameters:
         > generic sequence pointer
@@ -96,15 +112,16 @@ Returns the element stored in given position of the generic sequence
 */
 void* gen_sequence_get_elem_at(gen_sequence gs, int index);
 
+//============================== Add Element Functions ================================
 /*
 Adds the given element at the first position of the generic sequence
     Parameters:
         > generic sequence pointer
         > new element
     Returns:
-        > nothing
+        > success of the operation
 */
-void gen_sequence_add_elem_first(gen_sequence gs, void* new_element);
+int gen_sequence_add_elem_first(gen_sequence gs, void* new_element);
 
 /*
 Adds the given element at the last position of the generic sequence
@@ -112,9 +129,9 @@ Adds the given element at the last position of the generic sequence
         > generic sequence pointer
         > new element
     Returns:
-        > nothing
+        > success of the operation
 */
-void gen_sequence_add_elem_last(gen_sequence gs, void* new_element);
+int gen_sequence_add_elem_last(gen_sequence gs, void* new_element);
 
 /*
 Adds the given element at the given position of the generic sequence
@@ -122,10 +139,11 @@ Adds the given element at the given position of the generic sequence
         > generic sequence pointer
         > new element
     Returns:
-        > nothing
+        > success of the operation
 */
-void gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element);
+int gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element);
 
+//============================== Remove Element Functions ================================
 /*
 Removes the element at the first position of the generic sequence
     Parameters:
@@ -133,7 +151,7 @@ Removes the element at the first position of the generic sequence
     Returns:
         > nothing
 */
-void gen_sequence_rem_elem_first(gen_sequence gs);
+int gen_sequence_rem_elem_first(gen_sequence gs);
 
 /*
 Removes the element at the last position of the generic sequence
@@ -142,7 +160,7 @@ Removes the element at the last position of the generic sequence
     Returns:
         > nothing
 */
-void gen_sequence_rem_elem_last(gen_sequence gs);
+int gen_sequence_rem_elem_last(gen_sequence gs);
 
 /*
 Removes the element at the given position of the generic sequence
@@ -152,6 +170,6 @@ Removes the element at the given position of the generic sequence
     Returns:
         > nothing
 */
-void gen_sequence_rem_elem_at(gen_sequence gs, int index);
+int gen_sequence_rem_elem_at(gen_sequence gs, int index);
 
 #endif //GEN_SEQUENCE_H
