@@ -1,7 +1,7 @@
-#include "list_sequence.h"
+#include "list_array.h"
 #include <stdlib.h>
 
-struct _list_sequence {
+struct _list_array {
     void ** elements;
     int num_elements;
     int max_capacity;
@@ -9,8 +9,8 @@ struct _list_sequence {
 
 //============================== Creation and Deletion Functions ================================
 
-list_sequence list_sequence_create(int max_capacity){
-    list_sequence ls = (list_sequence) malloc(sizeof(struct _list_sequence));
+list_array list_array_create(int max_capacity){
+    list_array ls = (list_array) malloc(sizeof(struct _list_array));
     if(ls == NULL){
         return NULL;
     }
@@ -27,12 +27,12 @@ list_sequence list_sequence_create(int max_capacity){
     return ls;
 }
 
-void list_sequence_delete(list_sequence ls){
+void list_array_delete(list_array ls){
     free(ls->elements);
     free(ls);
 }
 
-void list_sequence_delete_all(list_sequence ls, void (*delete_func)(void*)){
+void list_array_delete_all(list_array ls, void (*delete_func)(void*)){
     for(int i = 0; i < ls->num_elements; i++){
         delete_func(ls->elements[i]);
     }
@@ -42,24 +42,24 @@ void list_sequence_delete_all(list_sequence ls, void (*delete_func)(void*)){
 
 //============================== State Functions ================================
 
-int list_sequence_max_cap(list_sequence ls){
+int list_array_max_cap(list_array ls){
     return ls->max_capacity;
 }
 
-int list_sequence_num_elems(list_sequence ls){
+int list_array_num_elems(list_array ls){
     return ls->num_elements;
 }
 
-int list_sequence_is_empty(list_sequence ls){
+int list_array_is_empty(list_array ls){
     return ls->num_elements == 0;
 }
 
-int list_sequence_is_full(list_sequence ls){
+int list_array_is_full(list_array ls){
     return ls->num_elements == ls->max_capacity;
 }
 
-list_sequence list_sequence_add_cap(list_sequence ls, int more_capacity){
-    list_sequence new_ls = list_sequence_create(ls->max_capacity + more_capacity);
+list_array list_array_add_cap(list_array ls, int more_capacity){
+    list_array new_ls = list_array_create(ls->max_capacity + more_capacity);
     if(new_ls == NULL){
         return NULL;
     }
@@ -71,14 +71,14 @@ list_sequence list_sequence_add_cap(list_sequence ls, int more_capacity){
     new_ls->num_elements = ls->num_elements;
     new_ls->max_capacity = ls->max_capacity + more_capacity;
 
-    list_sequence_delete(ls);
+    list_array_delete(ls);
 
     return new_ls;
 }
 
 //============================== Obtain Element Funtions ================================
 
-void* list_sequence_get_elem_first(list_sequence ls){
+void* list_array_get_elem_first(list_array ls){
     if(ls->num_elements == 0){
         return NULL;
     }
@@ -86,7 +86,7 @@ void* list_sequence_get_elem_first(list_sequence ls){
     return ls->elements[0];
 }
 
-void* list_sequence_get_elem_last(list_sequence ls){
+void* list_array_get_elem_last(list_array ls){
     if(ls->num_elements == 0){
         return NULL;
     }
@@ -94,7 +94,7 @@ void* list_sequence_get_elem_last(list_sequence ls){
     return ls->elements[ls->num_elements-1];
 }
 
-void* list_sequence_get_elem_at(list_sequence ls, int index){
+void* list_array_get_elem_at(list_array ls, int index){
     if(index < 0 || index >= ls->num_elements){
         return NULL;
     }
@@ -104,7 +104,7 @@ void* list_sequence_get_elem_at(list_sequence ls, int index){
 
 //============================== Add Element Function ================================
 
-int list_sequence_add_elem_last(list_sequence ls, void* new_element){
+int list_array_add_elem_last(list_array ls, void* new_element){
     if(ls->num_elements == ls->max_capacity){
         return 0;
     }
@@ -116,7 +116,7 @@ int list_sequence_add_elem_last(list_sequence ls, void* new_element){
 
 //============================== Remove Element Functions ================================
 
-int list_sequence_rem_elem_first(list_sequence ls){
+int list_array_rem_elem_first(list_array ls){
     if(ls->num_elements == 0){
         return 0;
     }
@@ -129,7 +129,7 @@ int list_sequence_rem_elem_first(list_sequence ls){
     return 1;
 }
 
-int list_sequence_rem_elem_last(list_sequence ls){
+int list_array_rem_elem_last(list_array ls){
     if(ls->num_elements == 0){
         return 0;
     }
@@ -138,7 +138,7 @@ int list_sequence_rem_elem_last(list_sequence ls){
     return 1;
 }
 
-int list_sequence_rem_elem_at(list_sequence ls, int index){
+int list_array_rem_elem_at(list_array ls, int index){
     if(ls->num_elements == 0){
         return 0;
     }

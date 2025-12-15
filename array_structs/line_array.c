@@ -1,7 +1,7 @@
-#include "line_sequence.h"
+#include "line_array.h"
 #include <stdlib.h>
 
-struct _line_sequence {
+struct _line_array {
     void ** elements;
     int max_capacity;
     int num_elements;
@@ -9,8 +9,8 @@ struct _line_sequence {
 
 //============================== Creation and Deletion Functions ================================
 
-line_sequence line_sequence_create(int max_capacity){
-    line_sequence ls = (line_sequence) malloc(sizeof(struct _line_sequence));
+line_array line_array_create(int max_capacity){
+    line_array ls = (line_array) malloc(sizeof(struct _line_array));
     if(ls == NULL){
         return NULL;
     }
@@ -26,12 +26,12 @@ line_sequence line_sequence_create(int max_capacity){
     return ls;
 }
 
-void line_sequence_delete(line_sequence ls){
+void line_array_delete(line_array ls){
     free(ls->elements);
     free(ls);
 }
 
-void line_sequence_delete_all(line_sequence ls, void (*delete_func)(void*)){
+void line_array_delete_all(line_array ls, void (*delete_func)(void*)){
     for(int i = 0; i < ls->num_elements; i++){
         delete_func(ls->elements[i]);
     }
@@ -41,24 +41,24 @@ void line_sequence_delete_all(line_sequence ls, void (*delete_func)(void*)){
 
 //============================== State Functions ================================
 
-int line_sequence_max_cap(line_sequence ls){
+int line_array_max_cap(line_array ls){
     return ls->max_capacity;
 }
 
-int line_sequence_num_elems(line_sequence ls){
+int line_array_num_elems(line_array ls){
     return ls->num_elements;
 }
 
-int line_sequence_is_empty(line_sequence ls){
+int line_array_is_empty(line_array ls){
     return ls->num_elements == 0;
 }
 
-int line_sequence_is_full(line_sequence ls){
+int line_array_is_full(line_array ls){
     return ls->num_elements == ls->max_capacity;
 }
 
-line_sequence line_sequence_add_cap(line_sequence ls, int more_capacity){
-    line_sequence new_ls = line_sequence_create(ls->max_capacity + more_capacity);
+line_array line_array_add_cap(line_array ls, int more_capacity){
+    line_array new_ls = line_array_create(ls->max_capacity + more_capacity);
     if(new_ls == NULL){
         return NULL;
     }
@@ -70,14 +70,14 @@ line_sequence line_sequence_add_cap(line_sequence ls, int more_capacity){
     new_ls->num_elements = ls->num_elements;
     new_ls->max_capacity = ls->max_capacity + more_capacity;
 
-    line_sequence_delete(ls);
+    line_array_delete(ls);
 
     return new_ls;
 }
 
 //============================== Obtain Element Funtion ================================
 
-void* line_sequence_get_elem_first(line_sequence ls){
+void* line_array_get_elem_first(line_array ls){
     if(ls->num_elements == 0){
         return NULL;
     }
@@ -87,7 +87,7 @@ void* line_sequence_get_elem_first(line_sequence ls){
 
 //============================== Add Element Function ================================
 
-int line_sequence_add_elem_last(line_sequence ls, void* new_element){
+int line_array_add_elem_last(line_array ls, void* new_element){
     if(ls->num_elements == ls->max_capacity){
         return 0;
     }
@@ -99,7 +99,7 @@ int line_sequence_add_elem_last(line_sequence ls, void* new_element){
 
 //============================== Remove Element Function ================================
 
-int line_sequence_rem_elem_first(line_sequence ls){
+int line_array_rem_elem_first(line_array ls){
     if(ls->num_elements == 0){
         return 0;
     }

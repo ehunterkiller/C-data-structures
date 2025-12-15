@@ -1,29 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../sequence_structs/gen_sequence.h"
+#include "../array_structs/gen_array.h"
 #include "test_data_type/testADT.h"
 
 int main(){
     printf("test begin\n");
 
-    //create a generic sequence
-    printf("creating generic sequence data structure\n");
+    //create a generic array
+    printf("creating generic array data structure\n");
 
-    gen_sequence gs = gen_sequence_create(5);
+    gen_array gs = gen_array_create(5);
     if(gs == NULL){
-        printf("something went wrong when creating generic sequence, returned NULL\n");
+        printf("something went wrong when creating generic array, returned NULL\n");
         return 1;
     }
     else{
-        printf("generic sequence created\n");
+        printf("generic array created\n");
     }
 
     //test if empty
-    if(gen_sequence_is_empty(gs)){
-        printf("generic sequence is empty\n");
+    if(gen_array_is_empty(gs)){
+        printf("generic array is empty\n");
     }
     else{
-        printf("generic sequence is NOT empty\n");
+        printf("generic array is NOT empty\n");
     }
     
     //fill it with test elements
@@ -35,36 +35,36 @@ int main(){
 
     //first
     printf("added element at first\n");
-    gen_sequence_add_elem_first(gs,t1);
+    gen_array_add_elem_first(gs,t1);
     
     //last
     printf("added element at last\n");
-    gen_sequence_add_elem_last(gs,t3);
+    gen_array_add_elem_last(gs,t3);
 
     //midle
     printf("added element at index 1\n");
-    gen_sequence_add_elem_at(gs,1,t2);
+    gen_array_add_elem_at(gs,1,t2);
 
     printf("elements added\n");
 
     //test some parameters
-    if(gen_sequence_is_full(gs)){
-        printf("generic sequence is FULL\n");
+    if(gen_array_is_full(gs)){
+        printf("generic array is FULL\n");
     }
     else{
-        printf("generic sequence has space\n");
+        printf("generic array has space\n");
     }
 
-    int max_cap = gen_sequence_max_cap(gs);
-    printf("generic sequence maximum capacity is %d\n",max_cap);
+    int max_cap = gen_array_max_cap(gs);
+    printf("generic array maximum capacity is %d\n",max_cap);
 
-    int num_elems = gen_sequence_num_elems(gs);
+    int num_elems = gen_array_num_elems(gs);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     //iterate
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+        test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
@@ -72,35 +72,35 @@ int main(){
 
     //remove element
     printf("removing element at index 1\n");
-    gen_sequence_rem_elem_at(gs,1);
+    gen_array_rem_elem_at(gs,1);
 
-    num_elems = gen_sequence_num_elems(gs);
+    num_elems = gen_array_num_elems(gs);
     printf("number of elements stored in generic is %d\n",num_elems);
 
     printf("iteration begin:\n");
     for(int i = 0; i < num_elems; i++){
-        test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+        test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
         int data = test_adt_get_data(t);
         printf("element at %d is %d\n",i,data);
     }
     printf("iteration complete\n");
 
     //resize
-    printf("adding more capacity to the generic sequence\n");
-    gen_sequence new_gs = gen_sequence_add_cap(gs,3);
+    printf("adding more capacity to the generic array\n");
+    gen_array new_gs = gen_array_add_cap(gs,3);
     if(new_gs == NULL){
-        printf("something went wrong when resizing the generic sequence\n");
+        printf("something went wrong when resizing the generic array\n");
     }
     else{
-        printf("generic sequence resized\n");
+        printf("generic array resized\n");
         gs = new_gs;
 
-        max_cap = gen_sequence_max_cap(gs);
-        printf("generic sequence maximum capacity is %d\n",max_cap);
+        max_cap = gen_array_max_cap(gs);
+        printf("generic array maximum capacity is %d\n",max_cap);
 
         printf("iteration begin:\n");
         for(int i = 0; i < num_elems; i++){
-            test_adt t = (test_adt) gen_sequence_get_elem_at(gs,i);
+            test_adt t = (test_adt) gen_array_get_elem_at(gs,i);
             int data = test_adt_get_data(t);
             printf("element at %d is %d\n",i,data);
         }
@@ -108,8 +108,8 @@ int main(){
     }
 
     //delete
-    printf("deleting generic sequence and all elements\n");
-    gen_sequence_delete_all(gs,test_adt_delete_gen);
+    printf("deleting generic array and all elements\n");
+    gen_array_delete_all(gs,test_adt_delete_gen);
 
     //test complete
     printf("test completed\nprogram ended\n");

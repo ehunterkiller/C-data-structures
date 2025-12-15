@@ -1,7 +1,7 @@
-#include "gen_sequence.h"
+#include "gen_array.h"
 #include <stdlib.h>
 
-struct _gen_sequence {
+struct _gen_array {
     void ** elements;
     int num_elements;
     int max_capacity;
@@ -9,8 +9,8 @@ struct _gen_sequence {
 
 //============================== Creation and Deletion Functions ================================
 
-gen_sequence gen_sequence_create(int max_capacity){
-    gen_sequence gs = (gen_sequence) malloc(sizeof(struct _gen_sequence));
+gen_array gen_array_create(int max_capacity){
+    gen_array gs = (gen_array) malloc(sizeof(struct _gen_array));
     if(gs == NULL){
         return NULL;
     }
@@ -27,12 +27,12 @@ gen_sequence gen_sequence_create(int max_capacity){
     return gs;
 }
 
-void gen_sequence_delete(gen_sequence gs){
+void gen_array_delete(gen_array gs){
     free(gs->elements);
     free(gs);
 }
 
-void gen_sequence_delete_all(gen_sequence gs, void (*delete_func)(void*)){
+void gen_array_delete_all(gen_array gs, void (*delete_func)(void*)){
     for(int i = 0; i < gs->num_elements; i++){
         delete_func(gs->elements[i]);
     }
@@ -42,24 +42,24 @@ void gen_sequence_delete_all(gen_sequence gs, void (*delete_func)(void*)){
 
 //============================== State Functions ================================
 
-int gen_sequence_max_cap(gen_sequence gs){
+int gen_array_max_cap(gen_array gs){
     return gs->max_capacity;
 }
 
-int gen_sequence_num_elems(gen_sequence gs){
+int gen_array_num_elems(gen_array gs){
     return gs->num_elements;
 }
 
-int gen_sequence_is_empty(gen_sequence gs){
+int gen_array_is_empty(gen_array gs){
     return gs->num_elements == 0;
 }
 
-int gen_sequence_is_full(gen_sequence gs){
+int gen_array_is_full(gen_array gs){
     return gs->num_elements == gs->max_capacity;
 }
 
-gen_sequence gen_sequence_add_cap(gen_sequence gs, int more_capacity){
-    gen_sequence new_gs = gen_sequence_create(gs->max_capacity + more_capacity);
+gen_array gen_array_add_cap(gen_array gs, int more_capacity){
+    gen_array new_gs = gen_array_create(gs->max_capacity + more_capacity);
     if(new_gs == NULL){
         return NULL;
     }
@@ -71,14 +71,14 @@ gen_sequence gen_sequence_add_cap(gen_sequence gs, int more_capacity){
     new_gs->num_elements = gs->num_elements;
     new_gs->max_capacity = gs->max_capacity + more_capacity;
 
-    gen_sequence_delete(gs);
+    gen_array_delete(gs);
 
     return new_gs;
 }
 
 //============================== Obtain Element Funtions ================================
 
-void* gen_sequence_get_elem_first(gen_sequence gs){
+void* gen_array_get_elem_first(gen_array gs){
     if(gs->num_elements == 0){
         return NULL;
     }
@@ -86,7 +86,7 @@ void* gen_sequence_get_elem_first(gen_sequence gs){
     return gs->elements[0];
 }
 
-void* gen_sequence_get_elem_last(gen_sequence gs){
+void* gen_array_get_elem_last(gen_array gs){
     if(gs->num_elements == 0){
         return NULL;
     }
@@ -94,7 +94,7 @@ void* gen_sequence_get_elem_last(gen_sequence gs){
     return gs->elements[gs->num_elements-1];
 }
 
-void* gen_sequence_get_elem_at(gen_sequence gs, int index){
+void* gen_array_get_elem_at(gen_array gs, int index){
     if(index < 0 || index >= gs->num_elements){
         return NULL;
     }
@@ -104,7 +104,7 @@ void* gen_sequence_get_elem_at(gen_sequence gs, int index){
 
 //============================== Add Element Functions ================================
 
-int gen_sequence_add_elem_first(gen_sequence gs, void* new_element){
+int gen_array_add_elem_first(gen_array gs, void* new_element){
     if(gs->num_elements == gs->max_capacity){
         return 0;
     }
@@ -118,7 +118,7 @@ int gen_sequence_add_elem_first(gen_sequence gs, void* new_element){
     return 1;
 }
 
-int gen_sequence_add_elem_last(gen_sequence gs, void* new_element){
+int gen_array_add_elem_last(gen_array gs, void* new_element){
     if(gs->num_elements == gs->max_capacity){
         return 0;
     }
@@ -128,7 +128,7 @@ int gen_sequence_add_elem_last(gen_sequence gs, void* new_element){
     return 1;
 }
 
-int gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
+int gen_array_add_elem_at(gen_array gs, int index, void* new_element){
     if(gs->num_elements == gs->max_capacity){
         return 0;
     }
@@ -148,7 +148,7 @@ int gen_sequence_add_elem_at(gen_sequence gs, int index, void* new_element){
 
 //============================== Remove Element Functions ================================
 
-int gen_sequence_rem_elem_first(gen_sequence gs){
+int gen_array_rem_elem_first(gen_array gs){
     if(gs->num_elements == 0){
         return 0;
     }
@@ -161,7 +161,7 @@ int gen_sequence_rem_elem_first(gen_sequence gs){
     return 1;
 }
 
-int gen_sequence_rem_elem_last(gen_sequence gs){
+int gen_array_rem_elem_last(gen_array gs){
     if(gs->num_elements == 0){
         return 0;
     }
@@ -170,7 +170,7 @@ int gen_sequence_rem_elem_last(gen_sequence gs){
     return 1;
 }
 
-int gen_sequence_rem_elem_at(gen_sequence gs, int index){
+int gen_array_rem_elem_at(gen_array gs, int index){
     if(gs->num_elements == 0){
         return 0;
     }
