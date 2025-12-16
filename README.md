@@ -9,7 +9,8 @@ This repository includes data structures for arrays, vectors, and dictionary-typ
 
 | Name | Definition |
 | --- | --- |
-| Generic Array | Array structure, allows the manipulation of all the data stored in it |
-| List Array | Array structure, allows the insertion to be only at the last position |
-| Line Array | Array structure, allows the insertion at the last position and the retrival at the first |
-| Pile Array | Array structure, allows the insertion and the retrival at the first position |
+| Generic Array | Array structure, non-ordered, non-dynamic capacity |
+| List Array | Array structure, non-ordered, non-dynamic capacity, only append insertion,  |
+| Line Array | Array structure, non-ordered, non-dynamic capacity, first in first out (FIFO) |
+| Pile Array | Array structure, non-ordered, non-dynamic capacity, first in last out (FILO) |
+| Generic Vector | Array structure, non-ordered, dynamic capacity |
