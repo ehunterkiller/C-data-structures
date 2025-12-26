@@ -12,5 +12,5 @@ This repository includes data structures for arrays, vectors, and dictionary-typ
 | Generic Array | Array structure, non-ordered, non-dynamic capacity |
 | List Array | Array structure, non-ordered, non-dynamic capacity, only append insertion,  |
 | Line Array | Array structure, non-ordered, non-dynamic capacity, first in first out (FIFO) |
-| Pile Array | Array structure, non-ordered, non-dynamic capacity, first in last out (FILO) |
+| Stack Array | Array structure, non-ordered, non-dynamic capacity, first in last out (FILO) |
 | Generic Vector | Array structure, non-ordered, dynamic capacity |
