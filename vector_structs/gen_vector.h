@@ -11,7 +11,8 @@ typedef struct _gen_vector * gen_vector;
 /*
 Creates the generic vector
     Parameters:
-        > maximum capacity
+        > initial maximum capacity
+        > resizing factor
     Returns:
         > generic vector pointer
 */
@@ -74,14 +75,14 @@ Returns true if the generic vector is at full capacity
 int gen_vector_is_full(gen_vector gv);
 
 /*
-Returns a new generic vector with added maximum capacity
+Resizes the generic vector with added maximum capacity
     Parameters:
         > generic vector pointer
         > number of new slots
     Returns:
-        > new generic vector pointer
+        > true or false (int)
 */
-gen_vector gen_vector_add_cap(gen_vector gv, int more_capacity);
+int gen_vector_add_cap(gen_vector gv, int more_capacity);
 
 //============================== Dynamic Resize Functions ================================
 /*
@@ -99,9 +100,9 @@ Changes the resize factor of the generic vector
         > generic vector pointer
         > new resize factor
     Returns:
-        > true or false (int)
+        > nothing
 */
-int gen_vector_change_resize_factor(gen_vector gv, int new_resize_factor);
+void gen_vector_change_resize_factor(gen_vector gv, int new_resize_factor);
 
 //============================== Obtain Element Funtions ================================
 /*

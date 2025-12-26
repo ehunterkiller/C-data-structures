@@ -1,8 +1,8 @@
 # C-data-structures
 
-This repository contains a list of data structures in the C language. The objective of these data structures is to store generic instances while being simple, lightweight, efficient, and secure memory-wise.
+This repository contains a series of data structures made using the C language. These simple data structures have the objective of storing any type of data according to some rules depending on their type.
 
-This repository includes data structures for arrays, vectors, and dictionary-type structures. Additionally, it also includes test files for testing the various implemented data structures.
+This repository includes data structures for arrays, vectors, and dictionary-type (not available yet) structures. Additionally, it also includes test files for testing the various implemented data structures.
 
 ---
 ### Available Data Structures

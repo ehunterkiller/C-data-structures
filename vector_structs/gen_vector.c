@@ -60,22 +60,17 @@ int gen_vector_is_full(gen_vector gv){
     return gv->num_elements == gv->max_capacity;
 }
 
-gen_vector gen_vector_add_cap(gen_vector gv, int more_capacity){
-    gen_vector new_gv = gen_vector_create(gv->max_capacity + more_capacity, gv->resize_factor);
-    if(new_gv == NULL){
-        return NULL;
+int gen_vector_add_cap(gen_vector gv, int more_capacity){
+    int new_max_cap = gv->max_capacity + more_capacity;
+    void **tmp = realloc(gv->elements, sizeof(void*) * new_max_cap);
+    if(tmp == NULL){
+        return 0;
     }
 
-    for(int i = 0; i < gv->num_elements; i++){
-        new_gv->elements[i] = gv->elements[i];
-    }
+    gv->elements = tmp;
+    gv->max_capacity = new_max_cap;
 
-    new_gv->num_elements = gv->num_elements;
-    new_gv->max_capacity = gv->max_capacity + more_capacity;
-
-    line_array_delete(gv);
-
-    return new_gv;
+    return 1;
 }
 
 //============================== Dynamic Resize Functions ================================
@@ -84,7 +79,7 @@ int gen_vector_resize_factor(gen_vector gv){
     return gv->resize_factor;
 }
 
-int gen_vector_change_resize_factor(gen_vector gv, int new_resize_factor){
+void gen_vector_change_resize_factor(gen_vector gv, int new_resize_factor){
     gv->resize_factor = new_resize_factor;
 }
 
@@ -118,11 +113,9 @@ void* gen_vector_get_elem_at(gen_vector gv, int index){
 
 int gen_vector_add_elem_first(gen_vector gv, void* new_element){
     if(gv->num_elements == gv->max_capacity){
-        gen_vector new_gv = gen_vector_add_cap(gv, gv->resize_factor);
-        if(new_gv == NULL){
+        if(gen_vector_add_cap(gv,gv->resize_factor) == 0){
             return 0;
         }
-        gv = new_gv;
     }
 
     for(int i = gv->num_elements-1; i >= 0; i--){
@@ -136,11 +129,9 @@ int gen_vector_add_elem_first(gen_vector gv, void* new_element){
 
 int gen_vector_add_elem_last(gen_vector gv, void* new_element){
     if(gv->num_elements == gv->max_capacity){
-        gen_vector new_gv = gen_vector_add_cap(gv, gv->resize_factor);
-        if(new_gv == NULL){
+        if(gen_vector_add_cap(gv,gv->resize_factor) == 0){
             return 0;
         }
-        gv = new_gv;
     }
 
     gv->elements[gv->num_elements] = new_element;
@@ -150,11 +141,9 @@ int gen_vector_add_elem_last(gen_vector gv, void* new_element){
 
 int gen_vector_add_elem_at(gen_vector gv, int index, void* new_element){
     if(gv->num_elements == gv->max_capacity){
-        gen_vector new_gv = gen_vector_add_cap(gv, gv->resize_factor);
-        if(new_gv == NULL){
+        if(gen_vector_add_cap(gv,gv->resize_factor) == 0){
             return 0;
         }
-        gv = new_gv;
     }
 
     if(index < 0 || index >= gv->max_capacity){

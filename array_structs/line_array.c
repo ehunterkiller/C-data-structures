@@ -58,21 +58,21 @@ int line_array_is_full(line_array la){
 }
 
 line_array line_array_add_cap(line_array la, int more_capacity){
-    line_array new_ls = line_array_create(la->max_capacity + more_capacity);
-    if(new_ls == NULL){
+    line_array new_la = line_array_create(la->max_capacity + more_capacity);
+    if(new_la == NULL){
         return NULL;
     }
 
     for(int i = 0; i < la->num_elements; i++){
-        new_ls->elements[i] = la->elements[i];
+        new_la->elements[i] = la->elements[i];
     }
 
-    new_ls->num_elements = la->num_elements;
-    new_ls->max_capacity = la->max_capacity + more_capacity;
+    new_la->num_elements = la->num_elements;
+    new_la->max_capacity = la->max_capacity + more_capacity;
 
     line_array_delete(la);
 
-    return new_ls;
+    return new_la;
 }
 
 //============================== Obtain Element Funtions ================================
